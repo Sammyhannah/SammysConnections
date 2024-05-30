@@ -1,0 +1,426 @@
+/* Page Background */
+body
+{
+    background-color: #fff;
+    color: #212529;
+    margin: 0;
+}
+
+/* Heading "Sammy's Connections" */
+.header
+{
+    font-family: sans-serif, arial;
+    background-color: #D7EDEB;
+    color: #636C6C;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+/* Animation for Heading, when clicked */
+.rotate
+{
+    animation: rotate 4s;
+    animation-iteration-count: 1;
+}
+
+@keyframes rotate
+{
+  50% {transform: rotate(180deg);}
+}
+
+/* Container for Instructions "Created 4 Groups of 4" */
+.container
+{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Instructions "Created 4 Groups of 4" */
+.instructions
+{
+    text-align: center;
+    color: #A3AAA9;
+    font-weight: lighter;
+}
+
+/* Container for Word Grid */
+.grid-wrapper
+{
+    display: flex;
+    justify-content: center;
+}
+
+/* Word Grid */
+.grid_container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    justify-content: space-between 0.5px;
+    gap: 5px;
+}
+
+/* Word Buttons */
+.word_button
+{
+    background-color: #ede9d7;
+    border: 1px solid transparent;
+    border-radius: 0.55rem;
+    width: 3.5cm;
+    font-size: 0.95rem;
+    font-family: sans-serif, arial;
+    font-weight: 590;
+    line-height: 3.5;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Word Buttons Unselected*/
+.unselected
+{
+    background-color: #ede9d7;
+}
+
+/* Word Buttons Selected*/
+.selected
+{
+    background-color: #575555;
+    color: #f5f4f2;
+}
+
+/* Mistakes Title */
+.mistakes
+{
+    color: #A3AAA9;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mistake Dot Tally */
+.dot
+{
+    margin-left: 18px;
+    height: 17px;
+    width: 17px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+/* Mistake Dot Subtract */
+.nodot
+{
+    margin-left: 18px;
+    height: 17px;
+    width: 17px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+/* Container for Bottom Buttons "Submit, Shuffle, Deselect All"  */
+.grid_container_bottom
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    justify-content: space-between 0.5px;
+    gap: 5px;
+}
+
+/* Unlickable Bottom Buttons "Submit, Shuffle, Deselect All" */
+.unclickable
+{
+    background-color: #fff;
+    border: 1px solid #C9C6C6;
+    border-radius: 2rem;
+    width: 2.8cm;
+    line-height: 3.5;
+    font-size: 0.95rem;
+    font-family: sans-serif, arial;
+    font-weight: 590;
+    text-align: center;
+    text-transform: capitalize;
+    color: #C9C6C6;
+}
+
+/* Bottom Buttons when Clickable */
+.clickable
+{
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 2rem;
+    width: 2.8cm;
+    line-height: 3.5;
+    font-size: 0.95rem;
+    font-family: sans-serif, arial;
+    font-weight: 590;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+/* Animation Incorrect Guess - Shake */
+
+.shake
+{
+    background-color: #7a7c7d;
+    animation: shake 0.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes shake
+{
+
+    0% { transform: translate(1px, 0px); }
+    10% { transform: translate(-1px, 0px); }
+    20% { transform: translate(-3px, 0px) ; }
+    30% { transform: translate(3px, 0px) ; }
+    40% { transform: translate(1px, 0px) ; }
+    50% { transform: translate(-1px, 0px) ; }
+    60% { transform: translate(-3px, 0px) ; }
+    70% { transform: translate(3px, 0px) ; }
+    80% { transform: translate(-1px, 0px) ; }
+    90% { transform: translate(1px, 0px) ; }
+    100% { transform: translate(1px, 0px) ; }
+}
+
+/* Animation All Guesses - Bounce */
+
+.bounce
+{
+    animation: bounce 0.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes bounce
+{
+    0% { transform: translate(0px, -10.00px);}
+    10% { transform: translate(0px, -9.00px) ; }
+    20% { transform: translate(0px, -8.00px) ; }
+    30% { transform: translate(0px, -7.25px) ; }
+    40% { transform: translate(0px, -6.50px) ; }
+    50% { transform: translate(0px, -5px) ; }
+    60% { transform: translate(0px, -4px) ; }
+    70% { transform: translate(0px, -3px); }
+    80% { transform: translate(0px, -2px); }
+    90% { transform: translate(0px, -1px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+/* Solution One */
+.solutionOne
+{
+    position: absolute;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    border-radius: 0.55rem;
+    width: 14.5cm;
+    font-family: sans-serif, arial;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+/* Solution Two */
+.solutionTwo
+{
+    position: absolute;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    border-radius: 0.55rem;
+    width: 14.5cm;
+    font-family: sans-serif, arial;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+/* Solution Three */
+.solutionThree
+{
+    position: absolute;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    border-radius: 0.55rem;
+    width: 14.5cm;
+    font-family: sans-serif, arial;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+/* Solution Four */
+.solutionFour
+{
+    position: absolute;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    border-radius: 0.55rem;
+    width: 14.5cm;
+    font-family: sans-serif, arial;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+/* Soultion Category Title */
+.solutionTitle
+{
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 0.55;
+    font-size: 0.95rem;
+
+}
+
+/* Soultion Answer (words) */
+.solutionAnswer
+{
+    font-size: 0.95rem;
+    font-weight: 100;
+    line-height: 0.1;
+    font-size: 0.85rem;
+
+}
+
+/* Visibility */
+.visible {
+    visibility: visible;
+}
+
+/* Invisibility */
+.invisible {
+    visibility: hidden;
+}
+
+/* Move Word Grid Down One */
+.downOne {
+    transform: translateY(70px);
+}
+
+/* Move Word Grid Down Two */
+.downTwo {
+    transform: translateY(140px);
+}
+
+/* Move Word Grid Down Three */
+.downThree {
+    transform: translateY(210px);
+}
+
+/* Move Word Grid Down Four */
+.downFour {
+    transform: translateY(280px);
+}
+
+/* Container for Solution One */
+.wrapperOne
+{
+    visibility: hidden;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    transform: translateY(30px);
+}
+
+/* Container for Solution Two */
+.wrapperTwo
+{
+    visibility: hidden;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    transform: translateY(80px);
+}
+
+/* Container for Solution Three */
+.wrapperThree
+{
+    visibility: hidden;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    transform: translateY(130px);
+}
+
+/* Container for Solution Four */
+.wrapperFour
+{
+    visibility: hidden;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    transform: translateY(180px);
+}
+
+/* Easy */
+.easy
+{
+    background-color: #f5e47a;
+
+}
+
+/* Medium */
+.medium
+{
+    background-color: #a4c963;
+
+}
+
+/* Hard */
+.hard
+{
+    background-color: #bcd2eb;
+
+}
+
+/* Expert */
+.expert
+{
+    background-color: #BA81C4;
+
+}
+
+/* When it changes to "Keep Trying!" and Animation */
+.ohWell
+{
+    font-size: 2rem;
+    letter-spacing: 2px;
+    animation: mymove 5s;
+    animation-iteration-count: 1;
+}
+
+/* When it changes to "Well Done!" and Animation */
+.wellDone
+{
+    font-size: 2rem;
+    letter-spacing: 2px;
+    animation: mymove 5s;
+    animation-iteration-count: 1;
+}
+
+  @keyframes mymove
+  {
+    50% {letter-spacing: 50px;}
+  }
+
+  /* Mistakes Dissapear for Free Play */
+.mistake
+{
+    color: #A3AAA9;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
