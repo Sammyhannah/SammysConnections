@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="styles.css" rel="stylesheet">
+        <title>Sammy's Connections</title>
+    </head>
+
+     <!-- Layout  -->
+    <body>
+        <!-- Top of Page Title "Sammy's Connections"  -->
+        <div class="header">
+            <h1 id="title">Sammy's Connections</h1>
+        </div>
+         <!-- Instructions  -->
+        <div class="container">
+            <div class="instructions">
+                <h3 id="instruct">Create four groups of four!</h3>
+            </div>
+            <!-- Hidden (for now) Solutions -->
+            <div class ="wrapperOne">
+            <div class="solutionOne">
+                    <h3 class="solutionTitle" id="title1">Title Placeholder One</h3>
+                    <h3 class="solutionAnswer" id="answer1">Answer Placeholder</h3>
+                </div>
+            </div>
+            <div class ="wrapperTwo">
+            <div class="solutionTwo">
+                    <h3 class="solutionTitle" id="title2">Title Placeholder Two</h3>
+                    <h3 class="solutionAnswer" id="answer2">Answer Placeholder</h3>
+                </div>
+            </div>
+            <div class ="wrapperThree">
+            <div class="solutionThree">
+                    <h3 class="solutionTitle" id="title3">Title Placeholder Three</h3>
+                    <h3 class="solutionAnswer" id="answer3">Answer Placeholder</h3>
+                </div>
+            </div>
+            <div class ="wrapperFour">
+            <div class="solutionFour">
+                    <h3 class="solutionTitle" id="title4">Title Placeholder Four</h3>
+                    <h3 class="solutionAnswer" id="answer4">Answer Placeholder</h3>
+                </div>
+            </div>
+            <!-- Word choices  -->
+                <div class="grid-wrapper">
+                    <div class="grid_container">
+                    <div class="word_button" id="btn1"  data-selected="false">Dog</div>
+                    <div class="word_button" id="btn2"  data-selected="false">Duck</div>
+                    <div class="word_button" id="btn3"  data-selected="false">Hat</div>
+                    <div class="word_button" id="btn4"  data-selected="false">Sorbet</div>
+                    <div class="word_button" id="btn5"  data-selected="false">Cake</div>
+                    <div class="word_button" id="btn6"  data-selected="false">Daisy</div>
+                    <div class="word_button" id="btn7"  data-selected="false">Cat</div>
+                    <div class="word_button" id="btn8"  data-selected="false">Sock</div>
+                    <div class="word_button" id="btn9"  data-selected="false">Pants</div>
+                    <div class="word_button" id="btn10"  data-selected="false">Sun</div>
+                    <div class="word_button" id="btn11"  data-selected="false">Tart</div>
+                    <div class="word_button" id="btn12"  data-selected="false">Lemon</div>
+                    <div class="word_button" id="btn13"  data-selected="false">Turtle</div>
+                    <div class="word_button" id="btn14"  data-selected="false">Cookie</div>
+                    <div class="word_button" id="btn15"  data-selected="false">Shirt</div>
+                    <div class="word_button" id="btn16"  data-selected="false">Bird</div>
+                    </div>
+                </div>
+             <!-- Mistake Count  -->
+            <div class="mistakes" id="mistake">
+                <h3>Mistakes Remaining:</h3>
+                <span class="dot" id="fourth"></span>
+                <span class="dot" id="third"></span>
+                <span class="dot" id="second"></span>
+                <span class="dot" id="first"></span>
+            </div>
+        </div>
+        <div class="grid-wrapper">
+            <div class="grid_container_bottom">
+                <button class = "clickable" id= "shuffle">Shuffle</button>
+                <button class = "unclickable" id= "deselect">Deselect All</button>
+                <button class = "unclickable" id= "submit">Submit</button>
+            </div>
+    </body>
+</html>
+
+<script>
+// Game Versions / Answer Key
+var data = [
+    {
+        "game": [{
+            "words": ["hat", "sock", "pants", "shirt"],
+            "category": { "level": 0, "title": "clothing" }
+        },
+        {
+            "words": ["sorbet", "cake", "tart", "cookie"],
+            "category": { "level": 1, "title": "Desserts" }
+        },
+        {
+            "words": ["dog", "cat", "turtle", "bird"],
+            "category": { "level": 2, "title": "Pets" }
+        },
+        {
+            "words": ["duck", "daisy", "sun", "lemon"],
+            "category": { "level": 3, "title": "Yellow Things" }
+        }]
+    },
+    {
+        "game": [{
+            "words": ["backpack", "purse", "suitcase", "tote"],
+            "category": { "level": 0, "title": "What You May Carry Things In" }
+        },
+        {
+            "words": ["movie", "book", "game", "song"],
+            "category": { "level": 1, "title": "Charades Categories" }
+        },
+        {
+            "words": ["fiddle", "place", "string", "hand"],
+            "category": { "level": 2, "title": "Second ___" }
+        },
+        {
+            "words": ["due", "play", "first", "blind"],
+            "category": { "level": 3, "title": "__ Date" }
+        }]
+    },
+    {
+        "game": [{
+            "words": ["pine", "oak", "willow", "palm"],
+            "category": { "level": 0, "title": "Trees" }
+        },
+        {
+            "words": ["vanilla", "flour", "sugar", "butter"],
+            "category": { "level": 1, "title": "Baking Ingrediants" }
+        },
+        {
+            "words": ["lover", "fearless", "red", "midnights"],
+            "category": { "level": 2, "title": "Taylor Swift Albums" }
+        },
+        {
+            "words": ["fred", "percy", "bill", "ron"],
+            "category": { "level": 3, "title": "Weasley Brothers from Harry Potter" }
+        }]
+    },
+    {
+        "game": [{
+            "words": ["morning", "night", "evening", "noon"],
+            "category": { "level": 0, "title": "Times of Day" }
+        },
+        {
+            "words": ["dust", "nuts", "pollen", "mold"],
+            "category": { "level": 1, "title": "Allergens" }
+        },
+        {
+            "words": ["risk", "clue", "sorry", "trouble"],
+            "category": { "level": 2, "title": "Board Games" }
+        },
+        {
+            "words": ["luck", "grief", "riddance", "vibes"],
+            "category": { "level": 3, "title": "Good ___" }
+        }]
+    },
+    {
+        "game": [{
+            "words": ["mix", "pulse", "blend", "smoothie"],
+            "category": { "level": 0, "title": "Blender Settings" }
+        },
+        {
+            "words": ["fruit", "milk", "honey", "ice"],
+            "category": { "level": 1, "title": "Smoothie Ingrediants" }
+        },
+        {
+            "words": ["tattle", "scatter", "sitter", "otter"],
+            "category": { "level": 2, "title": "Words with a double 't'" }
+        },
+        {
+            "words": ["star", "rats", "arts", "tars"],
+            "category": { "level": 3, "title": "Words with the letters S T A R" }
+        }]
+    }
+]
+
+//On page load: Initilize booleans to say that no Random Game is chosen yet
+var randomlySelectedGame = null;
+startGame(false);
+
+//Start Game Function (or Shuffle Words if game is already started)
+function startGame(isGameStarted)
+{
+    //Set variable for Current Game
+    var currentGame = null;
+    //If Game isn't Started (only will happen on page load or refresh)
+    if (isGameStarted == false)
+    {
+        //Select Random Game from Array of Games, and set as Current Game
+        var randomIndex = Math.floor(Math.random() * data.length);
+        randomlySelectedGame = data[randomIndex];
+        currentGame = data[randomIndex];
+    }
+    //Else if Game is Started (will happen if user clicked "Shuffle")
+    else
+    {
+        //Declare the Game the user is in as the Current Game
+        currentGame = randomlySelectedGame;
+    }
+    // Make an Array of All Words in the Current Game
+    var allWords = [];
+    for(let i = 0; i <= currentGame.game.length - 1; i++)
+        {
+            currentGame.game[i].words.forEach(word =>
+            {
+                allWords.push(word);
+            })
+    }
+
+    //Call the Shuffle Function to Shuffle the Array of Words in the Current Game
+    //(only if they are still in the word_button class, which excludes any deleted buttons that have been correctly guessed)
+    shuffleArray(allWords);
+    var word_buttons = document.querySelectorAll('.word_button');
+
+    //Take Shuffled Array of Words, Assign the Text Content of each to a Word Button
+    for(let b = 0; b <= word_buttons.length - 1; b++)
+    {
+        word_buttons[b].innerHTML = allWords[b];
+    }
+}
+
+//Shuffle Words in the Array of Words from the Current Game
+function shuffleArray(array)
+{
+    // Itterate over the Array
+    let currentIndex = array.length;
+    while (currentIndex != 0)
+        {
+            // Pick a Random Button and swap it with the Current Button
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+}
+
+//Set a Variable for number of Buttons currently Selected
+var selectedCurrently = 0;
+
+//Select Button Function (takes in a specific Word Button "on click")
+function Select(button)
+{
+    // Define Variables for Buttons Selected Status
+    var selectedStatus = button.dataset.selected;
+
+        //If Button is "Not Selected", and 4 Buttons are Not Yet Being Held
+        if (selectedStatus == "false" && selectedCurrently <= 3)
+        {
+            // Change to "Selected" and Change Appearance
+            button.dataset.selected = "true";
+            button.classList.remove("unselected");
+            button.classList.add("selected");
+            selectedCurrently++;
+
+            //Make Deselect Button Clickable if number of Buttons Selected is >= 1
+            var deselect_button = document.getElementById('deselect');
+            if (selectedCurrently >= 1)
+                {
+                    deselect_button.dataset.clickable="true";
+                    deselect_button.classList.remove("unclickable");
+                    deselect_button.classList.add("clickable");
+                }
+
+            //Make Submit Button Clickable if number of Buttons Selected is 4
+            var submit_button = document.getElementById('submit');
+            if (selectedCurrently >= 4)
+                {
+                    submit_button.dataset.clickable="true";
+                    submit_button.classList.remove("unclickable")
+                    submit_button.classList.add("clickable")
+                }
+        }
+        // If Button is "Selected"...
+        else if (selectedStatus == "true")
+        {
+            // Change to "Not Selected" and change appearance
+            button.dataset.selected = "false";
+            button.classList.remove("selected");
+            button.classList.add("unselected");
+            selectedCurrently--;
+
+            //Make Deselect Button Unclickable if buttons selected is < 1
+            var deselect_button = document.getElementById('deselect');
+            if (selectedCurrently < 1)
+                {
+                    deselect_button.dataset.clickable="false";
+                    deselect_button.classList.remove("clickable")
+                    deselect_button.classList.add("unclickable")
+                }
+
+            //Make Submit Button Unclickable if buttons selected is < 4
+            var submit_button = document.getElementById('submit');
+            if (selectedCurrently < 4)
+                {
+                    submit_button.dataset.clickable="false";
+                    submit_button.classList.remove("clickable");
+                    submit_button.classList.add("unclickable");
+                }
+
+        }
+}
+
+//"On Click" pass the Word Button that was clicked to the "Select" Function Above
+var word_buttons = document.querySelectorAll('.word_button');
+word_buttons.forEach(function(button)
+    {
+        button.addEventListener('click', function()
+        {
+            Select(button);
+        });
+    });
+
+
+//Deselect Button Function (takes in All Word Buttons when "Deselect" is clicked)
+function Deselect(buttons)
+{
+    // Define Variables for Deselect Button and Submit Button as their Button IDs
+    var deselect_button = document.getElementById('deselect');
+    var submit_button = document.getElementById('submit');
+    selectedCurrently = 0;
+
+    // For All Word Buttons...
+    buttons.forEach(function(button)
+       {
+        // Define Variables for Buttons Selected and Active Status
+        var selectedStatus = button.dataset.selected;
+
+                // If Button is "Selected"...
+                if (selectedStatus == "true")
+                {
+                // Change Button to "Not Selected" and Change Appearance
+                button.dataset.selected = "false";
+                button.classList.remove("selected");
+                button.classList.add("unselected");
+                }
+        })
+
+       // If there are No Buttons Currently Selected, Update Deselect Button
+       if (selectedCurrently < 1)
+       {
+            deselect_button.dataset.clickable="false";
+            deselect_button.classList.remove("clickable");
+            deselect_button.classList.add("unclickable");
+       }
+
+       // If there are less than 4 Buttons Currently Selected, Update Submit Button
+       if (selectedCurrently < 4)
+       {
+            submit_button.dataset.clickable="false";
+            submit_button.classList.remove("clickable");
+            submit_button.classList.add("unclickable");
+       }
+}
+
+   //When Deselect Button is clicked pass All Word Buttons to the Deselect Function
+   var deselect_button = document.getElementById('deselect');
+   var word_buttons = document.querySelectorAll('.word_button');
+   deselect_button.addEventListener('click', function()
+        {
+            Deselect(word_buttons);
+        });
+
+  //When Shuffle Button is clicked pass All Word Buttons to the Shuffle Function (With Below Function)
+   var shuffle_button = document.getElementById('shuffle');
+   shuffle_button.addEventListener('click', function()
+        {
+            Deselect(word_buttons);
+            Shuffle();
+        });
+
+//When Shuffle Button is Clicked, tell the Start Game Function the Game is Already Started,
+//so it will only Shuffle the Words in the Current Game
+function Shuffle()
+{
+    startGame(true);
+}
+
+//When the Submit Button is Clicked, pass All Word Buttons that are "Selected" to the Validate Function
+ var submit_button = document.getElementById('submit');
+    submit_button.addEventListener('click', function() {
+    var word_buttons = document.querySelectorAll('.word_button');
+    var guess_buttons = Array.from(word_buttons).filter(function(button) {
+        return button.dataset.selected == "true";
+    });
+
+    if (selectedCurrently == 4) {
+        validateAnswer(guess_buttons);
+    }
+});
+
+//Set a Variable for number of Mistakes Made (incorrect Guesses) and Solutions Found (correct Guesses)
+var mistakesMade = 0;
+var foundSolutions = 0;
+
+//Validate the Answer (takes the "Guess" Array of Sorted Word Buttons that are "Selected")
+function validateAnswer(buttons)
+{
+    //Put Text Content of Guess Buttons into an Array
+    var guessArray = [];
+    buttons.forEach(btn =>
+        {
+            guessArray.push(btn.innerText.toLowerCase());
+        });
+
+    //Initilize Variables for Correct Match (true/false) & Category
+    var correctMatch = false;
+    var category = null;
+
+    //Compare Guess Array of Word Buttons with Answer Array from Current Game
+    for(let i = 0; i <= randomlySelectedGame.game.length - 1; i++){
+        if(guessArray.every(item => randomlySelectedGame.game[i].words.includes(item)))
+        {
+            correctMatch = true;
+            category = randomlySelectedGame.game[i].category;
+            randomlySelectedGame.game.splice(i, 1);
+            break;
+        }
+    }
+
+    //If Incorrect...
+    if(!correctMatch)
+    {
+
+            //Animation Bounce & Shake
+            Array.from(word_buttons).filter(function(button)
+            {
+                if (button.dataset.selected == "true")
+                {
+                    button.classList.add('bounce');
+                    button.addEventListener('animationend', function()
+                    {
+                        this.classList.remove('bounce');
+                        this.classList.add('shake');
+                        this.addEventListener('animationend', function()
+                        {
+                            this.classList.remove('shake');
+                        });
+                    });
+                }
+            });
+
+            //Add to Mistakes Made Tally
+            mistakesMade++;
+
+            //Define Variables for Mistake Dots (UI Mistake Tally)
+            var mistake_one = document.getElementById('first');
+            var mistake_two = document.getElementById('second');
+            var mistake_three = document.getElementById('third');
+            var mistake_four = document.getElementById('fourth');
+
+            //Depending on the Number of Mistakes made So Far, Remove the Correct Dot(s)
+            if (mistakesMade == 1)
+                {
+                    mistake_one.classList.remove("dot")
+                    mistake_one.classList.add("nodot")
+                }
+            else if (mistakesMade == 2)
+                {
+                    mistake_two.classList.remove("dot")
+                    mistake_two.classList.add("nodot")
+                }
+            else if (mistakesMade == 3)
+                {
+                    mistake_three.classList.remove("dot")
+                    mistake_three.classList.add("nodot")
+                }
+            //If Out of Mistakes, Send Better Luck Next Time Message, Start Free Play
+            else if (mistakesMade == 4)
+                {
+                    selectedCurrently = 4
+                    mistake_four.classList.remove("dot")
+                    mistake_four.classList.add("nodot")
+
+                    //Animate "Better Luck Next Time!"
+                    var done = document.getElementById("instruct");
+                    done.textContent = 'Keep Trying!';
+                    done.classList.add('ohWell');
+
+                    //Free Play Mode
+                    var play = document.getElementById("title");
+                    play.textContent = "Sammy's Connections: Free Play Mode!";
+                    var err = document.getElementById("mistake");
+                    err.textContent = 'This is Free Play mode! (Refresh the page for a New Game)';
+                    err.classList.add('mistake');
+                }
+    }
+
+    //If Correct...
+    else if(correctMatch)
+         {
+            //Reset Currently Selected Counter
+            selectedCurrently = 0;
+
+            //Disable Deselect and Submit Buttons
+            deselect_button.dataset.clickable="true";
+            deselect_button.classList.remove("clickable")
+            deselect_button.classList.add("unclickable")
+            submit_button.dataset.clickable="false";
+            submit_button.classList.remove("clickable")
+            submit_button.classList.add("unclickable")
+
+            //Animation Bounce & Delete Correctly Guessed Buttons
+            Array.from(word_buttons).filter(function(button)
+            {
+                if (button.dataset.selected == "true")
+                {
+                    button.classList.add('bounce');
+                    button.addEventListener('animationend', function()
+                    {
+                        this.classList.remove('bounce');
+                        //Delete Buttons
+                        this.remove();
+                    });
+                }
+            });
+
+            //Add to Found Solutions Tally
+            foundSolutions++;
+
+            //Set Variables Needed to Reveal Solutions
+            var solutionOne = document.querySelector('.solutionOne');
+            var solutionTwo = document.querySelector('.solutionTwo');
+            var solutionThree = document.querySelector('.solutionThree');
+            var solutionFour = document.querySelector('.solutionFour');
+            var grid = document.querySelector('.grid-wrapper');
+            var gridmistakes = document.querySelector('.mistakes');
+            var gridbottom = document.querySelector('.grid_container_bottom');
+
+            //Display Solution(s) (Components Below in two parts)
+            //Set Solution Position Based on How Many Solutions Have Been Found so far
+            //Alter UI Grid to Allow Solutions to Be Shown
+            switch(foundSolutions)
+            {
+                case 1:
+                    setTimeout(function()
+                    {
+                        solutionOne.classList.add('visible');
+                    }, 500);
+                    colorSolution(guessArray, category, solutionOne);
+                    grid.classList.add('downOne');
+                    gridmistakes.classList.add('downOne');
+                    gridbottom.classList.add('downOne');
+                    break;
+                case 2:
+                    setTimeout(function()
+                    {
+                        solutionTwo.classList.add('visible');
+                    }, 500);
+                    colorSolution(guessArray, category, solutionTwo);
+                    grid.classList.add('downTwo');
+                    gridmistakes.classList.add('downTwo');
+                    gridbottom.classList.add('downTwo');
+                    break;
+                case 3:
+                    setTimeout(function()
+                    {
+                        solutionThree.classList.add('visible');
+                    }, 500);
+                    colorSolution(guessArray, category, solutionThree);
+                    grid.classList.add('downThree');
+                    gridmistakes.classList.add('downThree');
+                    gridbottom.classList.add('downThree');
+                    break;
+                //Game Over! Send "Well Done!" Message and Disable Buttons
+                case 4:
+                    setTimeout(function()
+                    {
+                        solutionFour.classList.add('visible');
+                    }, 500);
+                    colorSolution(guessArray, category, solutionFour);
+                    grid.classList.add('downFour');
+                    gridmistakes.classList.add('downFour');
+                    gridbottom.classList.add('downFour');
+                    var shuffle = document.getElementById('shuffle');
+                    shuffle.classList.remove('clickable');
+                    shuffle.classList.add('unclickable');
+                    var done = document.getElementById("instruct");
+                    done.textContent = 'Well done!';
+                    done.classList.add('wellDone');
+                    break;
+            }
+        }
+    }
+
+    //Set Solution Color and Text (Category Title & Answers)
+    function colorSolution(words, category, solution) {
+         var difficulty = null;
+         switch(category.level)
+            {
+                case 0:
+                    difficulty = 'easy'
+                    break;
+                case 1:
+                    difficulty = 'medium'
+                    break;
+                case 2:
+                    difficulty = 'hard'
+                    break;
+                case 3:
+                    difficulty = 'expert'
+                     break;
+            }
+
+        solution.classList.add(difficulty);
+        solution.getElementsByClassName("solutionTitle")[0].textContent = category.title;
+        solution.getElementsByClassName("solutionAnswer")[0].textContent = words;
+    }
+
+    //Animation Rotate for Title, When Clicked
+    var header = document.getElementById('title');
+    header.addEventListener('click', function()
+        {
+            header.classList.add('rotate');
+            header.addEventListener('animationend', function()
+                    {
+                        this.classList.remove('rotate');
+                    });
+        });
+
+</script>
