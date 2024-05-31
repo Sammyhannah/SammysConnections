@@ -8,10 +8,10 @@
 
 My project, Sammy's Connections, is my re-creation of the classic New York Times Game "Connections."
 
-I decided to attempt this project because though I love the New York Times version, it only allows the user to play one game per day. This can be frustrating to the user in several cases. When the game is too easy, the user will complete the game quickly and want to play again, but will then have to wait a full day for the next game. When the game is too challenging, the user may not find the solution within the allotted number of mistakes allowed, which will end the game. They will not only have to wait another day to play again, but will also be shown all the answers to the current game and won't be allowed to try again.
+I decided to attempt this project because though I love the New York Times version, it only allows the user to play one game per day. This can be frustrating to the user in several cases. When the game is too easy, the user will complete the game quickly and want to play again, but will then have to wait a full day for the next game. When the game is too challenging, the user may not find the solution within the allotted number of mistakes allowed, which will end the game. They will not only have to wait another day to play again, but will also be shown all the answers to the current game and won't be allowed to try the same game again.
 
 
-Sammy's Connections solves this probleming by both allowing users to play multiple different games in a row, and entering a free play game mode when the user loses the game, in which they can keep trying to find the correct solutions with an infinite number of mistakes allowed.
+Sammy's Connections solves this problem by allowing users to play multiple different games in a row, and entering a free play game mode when the user loses the game, in which they can keep trying to find the correct solutions with an infinite number of mistakes allowed.
 
 
 Another reason I attempted this project was because I recently found myself coming up with my own ideas for connection puzzles and wanted to share them!
@@ -21,9 +21,9 @@ Another reason I attempted this project was because I recently found myself comi
 
 > [Main Points] In a 16-word grid, players must find four groups of four words that share commanilities, without making four mistakes.
 
-The object of the game is to find commonalities between words in a 16-word grid. Players can win the game by correctly grouping four groups of four words without making more than four incorrect guesses.If four mistakes are made before the 16 words are grouped, players enter Free Play mode in which they can continue attempting to find the correct groupings for fun.
+The object of the game is to find commonalities between words in a 16-word grid. Players can win the game by correctly grouping four groups of four words without making more than four incorrect guesses. If four mistakes are made before the 16 words are grouped, players enter free play mode in which they can continue attempting to find the correct groupings for fun.
 
-Players can select up to 4 buttons at a time by clicking on them. To deselect buttons, players can click on a selected button, or can use the Deselect All button to deselect all currently selected buttons. To get a different perspective, players can shuffle all the buttons in the grid by pressing the Shuffle button, which will also unselect any currently selected buttons. Once players think they know a correct grouping, they can submit exactly 4 selected buttons as a guess. Players can reload or refresh the page to start a new randomly selected game with a new grid of words.
+Players can select up to 4 buttons at a time by clicking on them. To deselect buttons, players can click on a selected button, or can use the Deselect All button to deselect all currently selected buttons. To get a different perspective, players can shuffle all the buttons in the grid by pressing the Shuffle button, which will also unselect any currently selected buttons. Once players think they know a correct grouping, they can submit exactly 4 selected buttons as a guess by clicking the Submit button. Players can reload or refresh the page to start a new randomly selected game with a new grid of words.
 
 
 ### My game.html File
@@ -31,7 +31,7 @@ Players can select up to 4 buttons at a time by clicking on them. To deselect bu
 > [Main Points] In this file, I establish my layout, and then continue into Javascript to create functions that make the gameplay work.
 
 
-My HTML file starts with establishing my layout, which consists of a header, instructions, word grid, mistake count, and game buttons, as well as hidden solutions that are made visible when the player correctly submits a guess. The header establishes the title of the game, and the instructions tell the player how to play. The word grid, mistake count, and game buttons are a part of the gameplay.
+My HTML file starts with establishing the layout of the webpage, which consists of a header, instructions, word grid, mistake count, and game buttons, as well as hidden solutions that are made visible when the player correctly submits a guess. The header establishes the title of the game, and the instructions tell the player how to play. The word grid, mistake count, and game buttons are a part of the gameplay.
 
 
 Continuing into Javascript, I establish a variable for my data that holds arrays for each game and their respective solutions. These solutions include four groups of four related words, each group being a correct solution with its own category. The category for each group includes the title of the category (for example, "Articles of Clothing"), and the level of difficulty.
@@ -102,7 +102,7 @@ In gameplay, a player can press the Select All button to deselect any currently 
 #### Event Listener on the Submit Button / Validate Answer Function
 
 
-> [Main Points] When the Submit Button is clicked during gameplay, the 4 word buttons that are currently selected are passed to Validate Function, which checks if the guess is correct or not.If the guess is correct, the 4 buttons are deleted from the word grid, and the solution for that grouping is displayed. When all 4 groupings are found a congratulatory message appears. If the guess is incorrect, a mistake is tallied. When all 4 mistakes have been made, a message appears letting the user know they can keep trying in freeplay mode for fun.
+> [Main Points] When the Submit Button is clicked during gameplay, the 4 word buttons that are currently selected are passed to Validate Function, which checks if the guess is correct or not.If the guess is correct, the 4 buttons are deleted from the word grid, and the solution for that grouping is displayed. When all 4 groupings are found a congratulatory message appears. If the guess is incorrect, a mistake is tallied. When all 4 mistakes have been made, a message appears letting the user know they can keep trying in free play mode for fun.
 
 
 In the gameplay, players must find 4 groupings of 4 to win. Additionally, if players make 4 incorrect guesses they lose / enter free play mode. To keep track of this, I initialize variables for the number of solutions found and mistakes made.
@@ -123,7 +123,7 @@ When all 4 groupings are found a congratulatory message appears.
 If the guess doesn't find a correct match, the tally of how many mistakes have been made is incremented, which is displayed to the player by removing one of 4 dots that represents the player's remaining mistakes. An if else statement is used to decide which dot to remove depending on the number of mistakes that have been made so far. The dots are removed by changing their class (defined in styles.css to make them hidden).
 
 
-When all 4 mistakes have been made, a message appears letting the user know they can keep trying in freeplay mode for fun.
+When all 4 mistakes have been made, a message appears letting the user know they can keep trying in free play mode for fun.
 
 
 #### Color Solution Function
