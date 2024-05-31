@@ -1,5 +1,5 @@
 # Sammy's Connections
-## Video Demo:  <URL HERE>
+## Video Demo:  https://youtu.be/nU8SGiy3u40
 ## Description: My re-creation of the classic New York Times Game "Connections."
 
 ### Why I chose this project
