@@ -81,7 +81,7 @@ In the gameplay, players can select four words at a time, which they can then su
 The `Select Function` is called when a word button is clicked, and it takes in the specific word button that was clicked (passed from an event listener listening for the click).
 
 
-If the word button that was clicked and passed to the Function has a selected status of unselected, and the number of word buttons currently selected is not yet four, the word button proceeds to be selected. Being selected entails changing the word button's status to selected, class to selected (which is defined in styles.ss to add a darker color), and adding a tally to the number of word buttons currently selected.
+If the word button that was clicked and passed to the Function has a selected status of unselected, and the number of word buttons currently selected is not yet four, the word button proceeds to be selected. Being selected entails changing the word button's status to selected, class to selected (which is defined in styles.css to add a darker color), and adding a tally to the number of word buttons currently selected.
 
 
 If the word button that was clicked and passed to the Function has a selected status, the word button proceeds to be unselected (for the player this is helpful because if they want to deselect a button they simply have to click it again). Being deselected entails changing the word button's status to deselected, class to desselected (the normal color), and subtracting a tally from the number of word buttons currently selected.
